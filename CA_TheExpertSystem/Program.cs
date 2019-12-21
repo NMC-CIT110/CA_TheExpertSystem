@@ -13,7 +13,7 @@ namespace CA_TheExpertSystem
     // Description:     An application that has a conversation with the user
     //                  about getting a loan. Console properties are controlled.
     // Date Created:    5/20/2019
-    // Date Revised:    7/7/2019
+    // Date Revised:    12/7/2019
     // *************************************************************
 
     class Program
