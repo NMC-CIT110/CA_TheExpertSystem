@@ -13,7 +13,7 @@ namespace CA_TheExpertSystem
     // Description:     An application that has a conversation with the user
     //                  about getting a loan. Console properties are controlled.
     // Date Created:    5/20/2019
-    // Date Revised:    12/7/2019
+    // Date Revised:    12/20/2019
     // *************************************************************
 
     class Program
@@ -38,7 +38,7 @@ namespace CA_TheExpertSystem
             string userResponse;
 
             double loanPrinciple;
-            double loanInterestRate;
+            double monthlyInterestRate;
             int loanTermYears;
             int loanTermMonths = 0; // for precompiler check
             double monthlyPayment = 0; // for precompiler check
@@ -293,32 +293,32 @@ namespace CA_TheExpertSystem
                 switch (typeOfLoan)
                 {
                     case "home":
-                        loanInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = 0.0375 / 12;
                         break;
 
                     case "vehicle":
-                        loanInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = 0.0375 / 12;
                         break;
 
                     case "college":
-                        loanInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = 0.0375 / 12;
                         break;
 
                     case "personal":
-                        loanInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = 0.0375 / 12;
                         break;
 
                     default:
-                        loanInterestRate = 0;
+                        monthlyInterestRate = 0;
                         break;
                 }
 
-                if (loanInterestRate != 0.0)
+                if (monthlyInterestRate != 0.0)
                 {
                     //
                     // calculate the monthly payments
                     //
-                    double factor = (loanInterestRate * (Math.Pow(loanInterestRate + 1, loanTermMonths))) / (Math.Pow(loanInterestRate + 1, loanTermMonths) - 1);
+                    double factor = (monthlyInterestRate * (Math.Pow(monthlyInterestRate + 1, loanTermMonths))) / (Math.Pow(monthlyInterestRate + 1, loanTermMonths) - 1);
                     monthlyPayment = loanPrinciple * factor;
                 }
 
@@ -356,6 +356,50 @@ namespace CA_TheExpertSystem
                 Console.WriteLine();
                 Console.WriteLine("\tPress any key to continue.");
                 Console.ReadKey();
+
+
+                //
+                //      *******************************
+                //      *    Amortization Table       *
+                //      *******************************
+                //
+                // set cursor visible and clear screen
+                //
+                Console.CursorVisible = true;
+                Console.Clear();
+
+                //
+                // display header
+                //
+                Console.WriteLine();
+                Console.WriteLine("\t\tAmortization Table");
+                Console.WriteLine();
+
+
+                //
+                // display table headers
+                //
+
+                double newPrinciple = loanPrinciple;
+                double monthlyInterest;
+                double monthlyPrinciple;
+                for (int month = 0; month < loanTermMonths; month++)
+                {
+                    newPrinciple = newPrinciple - (newPrinciple * monthlyInterest);
+                    Console.WriteLine(
+                        month.ToString().PadLeft(5) +
+                        newPrinciple.ToString("C2").PadLeft(10) +
+                        monthlyPayment.ToString("C2").PadLeft(10)
+                        );
+                }
+
+                //
+                // pause the app for the user
+                //
+                Console.WriteLine();
+                Console.WriteLine("\tPress any key to continue.");
+                Console.ReadKey();
+
             }
             //
             // user not interested in the loan, thank them
