@@ -375,22 +375,39 @@ namespace CA_TheExpertSystem
                 Console.WriteLine("\t\tAmortization Table");
                 Console.WriteLine();
 
-
                 //
                 // display table headers
                 //
+                Console.WriteLine(
+                    "Month".PadLeft(5) +
+                    "Current Balance".PadLeft(20) +
+                    "Payment".PadLeft(10) +
+                    "Interest".PadLeft(10) +
+                    "Principle".PadLeft(10) +
+                    "New Balance".PadLeft(20)
+                    );
 
-                double newPrinciple = loanPrinciple;
-                double monthlyInterest;
+                //
+                // display table values
+                //
+                double currentBalance = loanPrinciple;
+                double newBalancee;
                 double monthlyPrinciple;
+                double monthlyInterest;
                 for (int month = 0; month < loanTermMonths; month++)
                 {
-                    newPrinciple = newPrinciple - (newPrinciple * monthlyInterest);
+                    monthlyInterest = currentBalance * monthlyInterestRate;
+                    monthlyPrinciple = monthlyPayment - monthlyInterest;
+                    newBalancee = currentBalance - monthlyPrinciple;
                     Console.WriteLine(
                         month.ToString().PadLeft(5) +
-                        newPrinciple.ToString("C2").PadLeft(10) +
-                        monthlyPayment.ToString("C2").PadLeft(10)
+                        currentBalance.ToString("C2").PadLeft(20) +
+                        monthlyPayment.ToString("C2").PadLeft(10) +
+                        monthlyInterest.ToString("C2").PadLeft(10) +
+                        monthlyPrinciple.ToString("C2").PadLeft(10) +
+                        newBalancee.ToString("C2").PadLeft(20)
                         );
+                    currentBalance = newBalancee;
                 }
 
                 //
