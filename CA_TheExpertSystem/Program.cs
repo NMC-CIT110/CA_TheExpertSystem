@@ -30,6 +30,14 @@ namespace CA_TheExpertSystem
             ConsoleColor appScreenForeground = ConsoleColor.DarkBlue;
 
             //
+            // constants
+            //
+            const double INTEREST_RATE_HOME = 0.035;
+            const double INTEREST_RATE_VEHICLE = 0.06;
+            const double INTEREST_RATE_COLLEGE = 0.075;
+            const double INTEREST_RATE_PERSONAL = 0.08;
+
+            //
             // variables
             //
             string userName;
@@ -293,19 +301,19 @@ namespace CA_TheExpertSystem
                 switch (typeOfLoan)
                 {
                     case "home":
-                        monthlyInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = INTEREST_RATE_HOME / 12;
                         break;
 
                     case "vehicle":
-                        monthlyInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = INTEREST_RATE_VEHICLE / 12;
                         break;
 
                     case "college":
-                        monthlyInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = INTEREST_RATE_COLLEGE / 12;
                         break;
 
                     case "personal":
-                        monthlyInterestRate = 0.0375 / 12;
+                        monthlyInterestRate = INTEREST_RATE_PERSONAL / 12;
                         break;
 
                     default:
@@ -346,6 +354,7 @@ namespace CA_TheExpertSystem
                 //
                 string typeOfLoanProperCase = typeOfLoan.Substring(0, 1).ToUpper() + typeOfLoan.Substring(1).ToLower();
                 Console.WriteLine($"Type: {typeOfLoanProperCase}");
+                Console.WriteLine($"Rate: {monthlyInterestRate * 12:p}");
                 Console.WriteLine($"Principle: {loanPrinciple:c}"); // currency format
                 Console.WriteLine($"Years: {loanTermYears}");
                 Console.WriteLine($"Monthly Payments: {monthlyPayment:c}"); // currency format
