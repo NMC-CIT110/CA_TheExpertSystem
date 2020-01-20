@@ -403,7 +403,7 @@ namespace CA_TheExpertSystem
                 double newBalancee;
                 double monthlyPrinciple;
                 double monthlyInterest;
-                for (int month = 0; month < loanTermMonths; month++)
+                for (int month = 1; month <= loanTermMonths; month++)
                 {
                     monthlyInterest = currentBalance * monthlyInterestRate;
                     monthlyPrinciple = monthlyPayment - monthlyInterest;
